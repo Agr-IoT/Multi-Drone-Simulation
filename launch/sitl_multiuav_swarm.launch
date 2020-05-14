@@ -1,0 +1,9 @@
+<launch>
+
+  <node pkg="MultiDrone" type="drone_control_uav0_node" name="drone_control_uav0_node" output="screen"/>
+  <node pkg="MultiDrone" type="drone_control_uav1_node" name="drone_control_uav1_node" output="screen"/>
+	
+
+  <include file="$(find px4)/launch/multi_uav_mavros_sitl.launch"/>
+
+</launch>
