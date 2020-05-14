@@ -135,7 +135,7 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
  add_executable(drone_control_uav0_node src/drone_control_uav0_node.cpp)
  add_executable(drone_control_uav1_node src/uav1/drone_control_uav1_node.cpp)
-# add_executable(drone_control_uav2_node src/drone_control_uav2_node.cpp)
+ add_executable(drone_control_uav2_node src/uav2/drone_control_uav2_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -154,9 +154,9 @@ include_directories(
  target_link_libraries(drone_control_uav1_node
    ${catkin_LIBRARIES}
  )
-# target_link_libraries(drone_control_uav1_node
-#   ${catkin_LIBRARIES}
-# )
+ target_link_libraries(drone_control_uav2_node
+   ${catkin_LIBRARIES}
+ )
 
 #############
 ## Install ##
