@@ -1,8 +1,3 @@
-/**
- * @file offb_node.cpp
- * @brief Offboard control example node, written with MAVROS version 0.19.x, PX4 Pro Flight
- * Stack and tested in Gazebo SITL
- */
 
 #include <ros/ros.h>
 #include <geometry_msgs/PoseStamped.h>
@@ -13,6 +8,10 @@
 mavros_msgs::State current_state;
 void state_cb(const mavros_msgs::State::ConstPtr& msg){
     current_state = *msg;
+}
+
+void testm(){
+  
 }
 
 int main(int argc, char **argv)
@@ -28,7 +27,7 @@ int main(int argc, char **argv)
             ("/uav2/mavros/cmd/arming");
     ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>
             ("/uav2/mavros/set_mode");
-
+    ROS_INFO("Initializing...");
     //the setpoint publishing rate MUST be faster than 2Hz
     ros::Rate rate(20.0);
 
@@ -37,6 +36,7 @@ int main(int argc, char **argv)
         ros::spinOnce();
         rate.sleep();
     }
+    ROS_INFO("connected...");
 
     geometry_msgs::PoseStamped pose;
     pose.pose.position.x = 0;
@@ -57,6 +57,7 @@ int main(int argc, char **argv)
     arm_cmd.request.value = true;
 
     ros::Time last_request = ros::Time::now();
+    ros::Time time_start = ros::Time::now();
 
     while(ros::ok()){
         if( current_state.mode != "OFFBOARD" &&
@@ -76,6 +77,9 @@ int main(int argc, char **argv)
                 last_request = ros::Time::now();
             }
         }
+
+        pose.pose.position.x = 5*sin(2.0*M_PI*0.1*(ros::Time::now()-time_start).toSec());
+        pose.pose.position.y = 5*cos(2.0*M_PI*0.1*(ros::Time::now()-time_start).toSec());
 
         local_pos_pub.publish(pose);
 

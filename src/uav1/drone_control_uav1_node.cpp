@@ -57,6 +57,7 @@ int main(int argc, char **argv)
     arm_cmd.request.value = true;
 
     ros::Time last_request = ros::Time::now();
+    ros::Time time_start = ros::Time::now();
 
     while(ros::ok()){
         if( current_state.mode != "OFFBOARD" &&
@@ -76,7 +77,8 @@ int main(int argc, char **argv)
                 last_request = ros::Time::now();
             }
         }
-
+        pose.pose.position.x = 6*sin(-2.0*M_PI*0.15*(ros::Time::now()-time_start).toSec());
+        pose.pose.position.y = 6*cos(-2.0*M_PI*0.15*(ros::Time::now()-time_start).toSec());
         local_pos_pub.publish(pose);
 
         ros::spinOnce();

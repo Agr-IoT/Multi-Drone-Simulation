@@ -1,0 +1,2 @@
+PX4 Firmware -  https://github.com/PX4/Firmware.git
+Mavros       -  https://github.com/mavlink/mavros.git
