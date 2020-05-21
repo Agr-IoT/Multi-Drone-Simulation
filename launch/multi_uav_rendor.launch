@@ -5,7 +5,7 @@
     <!-- vehicle model and world -->
     <arg name="est" default="ekf2"/>
     <arg name="vehicle" default="iris"/>
-    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/empty.world"/>
+    <arg name="world" default="$(find MultiDrone)/worlds/empty.world"/>
     <!-- gazebo configs -->
     <arg name="gui" default="true"/>
     <arg name="debug" default="false"/>
@@ -14,7 +14,7 @@
     <!-- Gazebo sim -->
 
 	
-    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <include file="$(find MultiDrone)/launch/empty_world.launch">
         <arg name="gui" value="$(arg gui)"/>
         <arg name="world_name" value="$(arg world)"/>
         <arg name="debug" value="$(arg debug)"/>
