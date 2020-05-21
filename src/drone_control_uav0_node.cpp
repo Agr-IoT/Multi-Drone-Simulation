@@ -56,7 +56,7 @@ int main(int argc, char **argv)
   vel.angular.z = 0.0;
 
   //send a few setpoints before starting
-  for(int i = 100;loop_time_start ros::ok() && i > 0; --i){
+  for(int i = 100; ros::ok() && i > 0; --i){
     local_pos_pub.publish(pose);
     ros::spinOnce();
     rate.sleep();
@@ -70,9 +70,9 @@ int main(int argc, char **argv)
 
 
   geometry_msgs::PoseStamped pose1;
-  pose.pose.position.x = 2;
-  pose.pose.position.y = 2;
-  pose.pose.position.z = 2;
+  pose1.pose.position.x = 3;
+  pose1.pose.position.y = 3;
+  pose1.pose.position.z = 2;
 
   ros::Time last_request = ros::Time::now();
 
@@ -106,14 +106,33 @@ int main(int argc, char **argv)
       // Update the desired pose:
       /*pose.pose.position.x = 9*sin(2.0*M_PI*0.3*(ros::Time::now()-time_start).toSec());
       pose.pose.position.y = 9*cos(2.0*M_PI*0.3*(ros::Time::now()-time_start).toSec());
-
       //Update the desired velocity:
       vel.linear.x = 4.0*M_PI*0.1*cos(2.0*M_PI*0.1*(ros::Time::now()-time_start).toSec());
       vel.linear.y = -4.0*M_PI*0.1*sin(2.0*M_PI*0.1*(ros::Time::now()-time_start).toSec());*/
       if(countPosition == 0){
-        local_pos_pub.publish(pose);
+        pose.pose.position.x = 0;
+        pose.pose.position.y = 0;
+        pose.pose.position.z = 2;
+        for(int i = 100; ros::ok() && i > 0; --i){
+          local_pos_pub.publish(pose);
+          ros::spinOnce();
+          rate.sleep();
+        }
       }
-      if(current_state.armed && ros::Time::now() - time_start1 > ros::Duration(15.0)){
+      else if(countPosition == 1){
+        pose.pose.position.x = 3;
+        pose.pose.position.y = 3;
+        pose.pose.position.z = 2;
+        for(int i = 100; ros::ok() && i > 0; --i){
+          local_pos_pub.publish(pose);
+          ros::spinOnce();
+          rate.sleep();
+        }
+
+      }
+
+
+      if(current_state.armed && ros::Time::now() - time_start1 > ros::Duration(8.0)){
         countPosition += 1  ;
         if(countPosition == 2){
           countPosition = 0;
@@ -122,12 +141,7 @@ int main(int argc, char **argv)
         }
       }
 
-      while(current_state.armed &&  ros::Time::now() - time_start1 < ros::Duration(30.0) &&
-            ros::Time::now() - time_start1 > ros::Duration(15.0) &&
-            countPosition == 1){
-        local_pos_pub.publish(pose1);
-
-      }
+      local_pos_pub.publish(pose);
 
       //local_vel_pub.publish(vel);
 
