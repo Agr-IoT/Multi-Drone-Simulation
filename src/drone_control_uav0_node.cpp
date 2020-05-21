@@ -42,8 +42,8 @@ int main(int argc, char **argv)
 
   geometry_msgs::PoseStamped pose;
   pose.header.frame_id = "map";
-  pose.pose.position.x = 0;
-  pose.pose.position.y = 0;
+  pose.pose.position.x = 5;
+  pose.pose.position.y = -5;
   pose.pose.position.z = 2;
 
 
@@ -69,10 +69,45 @@ int main(int argc, char **argv)
   arm_cmd.request.value = true;
 
 
-  geometry_msgs::PoseStamped pose1;
-  pose1.pose.position.x = 3;
-  pose1.pose.position.y = 3;
-  pose1.pose.position.z = 2;
+  geometry_msgs::PoseStamped sensor1Position;
+  sensor1Position.pose.position.x = 5;
+  sensor1Position.pose.position.y = -2;
+  sensor1Position.pose.position.z = 2;
+
+  geometry_msgs::PoseStamped sensor2Position;
+  sensor2Position.pose.position.x = 7;
+  sensor2Position.pose.position.y = -1;
+  sensor2Position.pose.position.z = 2;
+
+  geometry_msgs::PoseStamped sensor3Position;
+  sensor3Position.pose.position.x = 10;
+  sensor3Position.pose.position.y = -2;
+  sensor3Position.pose.position.z = 1;
+
+  geometry_msgs::PoseStamped sensor4Position;
+  sensor4Position.pose.position.x = 8;
+  sensor4Position.pose.position.y = -6;
+  sensor4Position.pose.position.z = 2;
+
+  geometry_msgs::PoseStamped sensor5Position;
+  sensor5Position.pose.position.x = 7;
+  sensor5Position.pose.position.y = -8;
+  sensor5Position.pose.position.z = 3;
+
+  geometry_msgs::PoseStamped sensor6Position;
+  sensor6Position.pose.position.x = 3;
+  sensor6Position.pose.position.y = -7;
+  sensor6Position.pose.position.z = 2;
+
+  geometry_msgs::PoseStamped sensor7Position;
+  sensor7Position.pose.position.x = 1;
+  sensor7Position.pose.position.y = -7;
+  sensor7Position.pose.position.z = 1;
+
+  geometry_msgs::PoseStamped sensor8Position;
+  sensor8Position.pose.position.x = 1;
+  sensor8Position.pose.position.y = -3;
+  sensor8Position.pose.position.z = 2;
 
   ros::Time last_request = ros::Time::now();
 
@@ -110,9 +145,7 @@ int main(int argc, char **argv)
       vel.linear.x = 4.0*M_PI*0.1*cos(2.0*M_PI*0.1*(ros::Time::now()-time_start).toSec());
       vel.linear.y = -4.0*M_PI*0.1*sin(2.0*M_PI*0.1*(ros::Time::now()-time_start).toSec());*/
       if(countPosition == 0){
-        pose.pose.position.x = 0;
-        pose.pose.position.y = 0;
-        pose.pose.position.z = 2;
+
         for(int i = 100; ros::ok() && i > 0; --i){
           local_pos_pub.publish(pose);
           ros::spinOnce();
@@ -120,11 +153,75 @@ int main(int argc, char **argv)
         }
       }
       else if(countPosition == 1){
-        pose.pose.position.x = 3;
-        pose.pose.position.y = 3;
-        pose.pose.position.z = 2;
+
         for(int i = 100; ros::ok() && i > 0; --i){
-          local_pos_pub.publish(pose);
+          local_pos_pub.publish(sensor1Position);
+          ros::spinOnce();
+          rate.sleep();
+        }
+
+      }
+
+      else if(countPosition == 2){
+
+        for(int i = 100; ros::ok() && i > 0; --i){
+          local_pos_pub.publish(sensor2Position);
+          ros::spinOnce();
+          rate.sleep();
+        }
+
+      }
+
+      else if(countPosition == 3){
+
+        for(int i = 100; ros::ok() && i > 0; --i){
+          local_pos_pub.publish(sensor3Position);
+          ros::spinOnce();
+          rate.sleep();
+        }
+
+      }
+      else if(countPosition == 4){
+
+        for(int i = 100; ros::ok() && i > 0; --i){
+          local_pos_pub.publish(sensor4Position);
+          ros::spinOnce();
+          rate.sleep();
+        }
+
+      }
+      else if(countPosition == 5){
+
+        for(int i = 100; ros::ok() && i > 0; --i){
+          local_pos_pub.publish(sensor5Position);
+          ros::spinOnce();
+          rate.sleep();
+        }
+
+      }
+      else if(countPosition == 6){
+
+        for(int i = 100; ros::ok() && i > 0; --i){
+          local_pos_pub.publish(sensor6Position);
+          ros::spinOnce();
+          rate.sleep();
+        }
+
+      }
+      else if(countPosition == 7){
+
+        for(int i = 100; ros::ok() && i > 0; --i){
+          local_pos_pub.publish(sensor7Position);
+          ros::spinOnce();
+          rate.sleep();
+        }
+
+      }
+
+      else if(countPosition == 8){
+
+        for(int i = 100; ros::ok() && i > 0; --i){
+          local_pos_pub.publish(sensor8Position);
           ros::spinOnce();
           rate.sleep();
         }
@@ -132,16 +229,21 @@ int main(int argc, char **argv)
       }
 
 
-      if(current_state.armed && ros::Time::now() - time_start1 > ros::Duration(8.0)){
+
+
+
+      if(current_state.armed && ros::Time::now() - time_start1 > ros::Duration(4.0)){
+        std::cout << "position is" + std::to_string(countPosition) << '\n';
         countPosition += 1  ;
-        if(countPosition == 2){
+
+        if(countPosition > 7){
           countPosition = 0;
           ROS_INFO("countPosition 0"  );
           time_start1 = ros::Time::now();
         }
       }
 
-      local_pos_pub.publish(pose);
+      //local_pos_pub.publish(pose);
 
       //local_vel_pub.publish(vel);
 
