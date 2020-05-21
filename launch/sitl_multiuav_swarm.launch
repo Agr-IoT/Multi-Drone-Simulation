@@ -6,6 +6,6 @@
   <node pkg="MultiDrone" type="drone_control_uav2_node" name="drone_control_uav2_node" output="screen"/>
 	
 
-  <include file="$(find px4)/launch/multi_uav_mavros_sitl.launch"/>
+  <include file="$(find MultiDrone)/launch/multi_uav_rendor.launch"/>
 
 </launch>
