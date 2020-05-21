@@ -14,13 +14,7 @@
     <!-- Gazebo sim -->
 
 	
-    <include file="$(find MultiDrone)/launch/empty_world.launch">
-        <arg name="gui" value="$(arg gui)"/>
-        <arg name="world_name" value="$(arg world)"/>
-        <arg name="debug" value="$(arg debug)"/>
-        <arg name="verbose" value="$(arg verbose)"/>
-        <arg name="paused" value="$(arg paused)"/>
-    </include>
+    <include file="$(find MultiDrone)/launch/bayland_world.launch"/> 
 
     <!-- UAV0 -->
     <group ns="uav0">
