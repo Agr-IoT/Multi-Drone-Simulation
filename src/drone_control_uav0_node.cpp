@@ -4,6 +4,8 @@
 #include <mavros_msgs/CommandBool.h>
 #include <mavros_msgs/SetMode.h>
 #include <mavros_msgs/State.h>
+#include "std_msgs/String.h"
+#include <sstream>
 #include <string>
 
 mavros_msgs::State current_state;
@@ -12,9 +14,14 @@ void state_callback(const mavros_msgs::State::ConstPtr& msg){
   current_state = *msg;
 }
 
+void sensorCallback(const std_msgs::String::ConstPtr& msg)
+{
+  ROS_INFO("I got data : [%s]", msg->data.c_str());
+}
+
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "offb_node_feedback");
+  ros::init(argc, argv, "offb_node_uav0");
   ros::NodeHandle nh;
 
   ros::Subscriber state_sub = nh.subscribe<mavros_msgs::State>
@@ -153,8 +160,9 @@ int main(int argc, char **argv)
         }
       }
       else if(countPosition == 1){
-
+        ros::Subscriber sub = nh.subscribe("chatter", 1000, sensorCallback);
         for(int i = 100; ros::ok() && i > 0; --i){
+
           local_pos_pub.publish(sensor1Position);
           ros::spinOnce();
           rate.sleep();
@@ -236,7 +244,7 @@ int main(int argc, char **argv)
         std::cout << "position is" + std::to_string(countPosition) << '\n';
         countPosition += 1  ;
 
-        if(countPosition > 7){
+        if(countPosition > 8){
           countPosition = 0;
           ROS_INFO("countPosition 0"  );
           time_start1 = ros::Time::now();

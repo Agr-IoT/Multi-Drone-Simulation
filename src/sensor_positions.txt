@@ -38,3 +38,94 @@ geometry_msgs::PoseStamped sensor8Position;
 sensor8Position.pose.position.x = 1;
 sensor8Position.pose.position.y = -3;
 sensor8Position.pose.position.z = 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+region 2 - uav1
+
+geometry_msgs::PoseStamped sensor1Position;
+sensor1Position.pose.position.x = -2;
+sensor1Position.pose.position.y = 0;
+sensor1Position.pose.position.z = 2;
+
+geometry_msgs::PoseStamped sensor2Position;
+sensor2Position.pose.position.x = -4;
+sensor2Position.pose.position.y = -5;
+sensor2Position.pose.position.z = 2;
+
+geometry_msgs::PoseStamped sensor3Position;
+sensor3Position.pose.position.x = -8;
+sensor3Position.pose.position.y = -6;
+sensor3Position.pose.position.z = 1;
+
+geometry_msgs::PoseStamped sensor4Position;
+sensor4Position.pose.position.x = -7;
+sensor4Position.pose.position.y = 2;
+sensor4Position.pose.position.z = 2;
+
+geometry_msgs::PoseStamped sensor5Position;
+sensor5Position.pose.position.x = -4;
+sensor5Position.pose.position.y = 9;
+sensor5Position.pose.position.z = 3;
+
+geometry_msgs::PoseStamped sensor6Position;
+sensor6Position.pose.position.x = -3;
+sensor6Position.pose.position.y = 4;
+sensor6Position.pose.position.z = 2;
+
+
+
+
+
+
+
+
+
+
+
+region 3 - uav2
+
+geometry_msgs::PoseStamped sensor1Position;
+sensor1Position.pose.position.x = 6;
+sensor1Position.pose.position.y = 9;
+sensor1Position.pose.position.z = 2;
+
+geometry_msgs::PoseStamped sensor2Position;
+sensor2Position.pose.position.x = 10;
+sensor2Position.pose.position.y = 7;
+sensor2Position.pose.position.z = 2;
+
+geometry_msgs::PoseStamped sensor3Position;
+sensor3Position.pose.position.x = 12;
+sensor3Position.pose.position.y = 4;
+sensor3Position.pose.position.z = 1;
+
+geometry_msgs::PoseStamped sensor4Position;
+sensor4Position.pose.position.x = 10;
+sensor4Position.pose.position.y = 4;
+sensor4Position.pose.position.z = 2;
+
+geometry_msgs::PoseStamped sensor5Position;
+sensor5Position.pose.position.x = 5;
+sensor5Position.pose.position.y = 2;
+sensor5Position.pose.position.z = 2;
+
+geometry_msgs::PoseStamped sensor6Position;
+sensor6Position.pose.position.x = 0;
+sensor6Position.pose.position.y = 2;
+sensor6Position.pose.position.z = 3;
+
+geometry_msgs::PoseStamped sensor7Position;
+sensor7Position.pose.position.x = 1;
+sensor7Position.pose.position.y = 8;
+sensor7Position.pose.position.z = 2;
