@@ -138,7 +138,9 @@ include_directories(
  add_executable(drone_control_uav1_node src/uav1/drone_control_uav1_node.cpp)
  add_executable(drone_control_uav2_node src/uav2/drone_control_uav2_node.cpp)
  
- add_executable(sensor1_node src/sensors/sensor1_node.cpp)
+ add_executable(sensor1_node src/sensors/region1/sensor1_node.cpp)
+ add_executable(sensor2_node src/sensors/region1/sensor2_node.cpp)
+ add_executable(sensor3_node src/sensors/region1/sensor3_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -160,7 +162,14 @@ include_directories(
  target_link_libraries(drone_control_uav2_node
    ${catkin_LIBRARIES}
  )
+
  target_link_libraries(sensor1_node
+   ${catkin_LIBRARIES}
+ )
+ target_link_libraries(sensor2_node
+   ${catkin_LIBRARIES}
+ )
+ target_link_libraries(sensor3_node
    ${catkin_LIBRARIES}
  )
 #############

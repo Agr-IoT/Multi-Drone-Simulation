@@ -24,11 +24,21 @@ void position_callback(const nav_msgs::Odometry::ConstPtr& msg){
 
 void sensorCallback(const std_msgs::String::ConstPtr& msg)
 {
-
-    if(current_pos.pose.pose.position.y < -1.8 && current_pos.pose.pose.position.y > -2.2){
+    float curr_x_pose = current_pos.pose.pose.position.x;
+    float curr_y_pose = current_pos.pose.pose.position.y;
+    if(curr_y_pose< -0.8 && curr_y_pose > -1.2 &&
+      curr_x_pose  < 7.2 && curr_x_pose > 6.8){
+      ROS_INFO("I got data : [%s]", msg->data.c_str());
+    }
+    if(curr_y_pose< -2.3 && curr_y_pose > -2.7 &&
+      curr_x_pose  < 6.2 && curr_x_pose > 5.8){
       ROS_INFO("I got data : [%s]", msg->data.c_str());
     }
 
+    if(curr_y_pose< -1.8 && curr_y_pose > -2.2 &&
+      curr_x_pose  < 5.2 && curr_x_pose > 4.8){
+      ROS_INFO("I got data : [%s]", msg->data.c_str());
+    }
 
 
 
@@ -105,8 +115,8 @@ int main(int argc, char **argv)
   sensor2Position.pose.position.z = 2;
 
   geometry_msgs::PoseStamped sensor3Position;
-  sensor3Position.pose.position.x = 10;
-  sensor3Position.pose.position.y = -2;
+  sensor3Position.pose.position.x = 6;
+  sensor3Position.pose.position.y = -2.5;
   sensor3Position.pose.position.z = 1;
 
   geometry_msgs::PoseStamped sensor4Position;
@@ -178,7 +188,7 @@ int main(int argc, char **argv)
         }
       }
       else if(countPosition == 1){
-        ros::Subscriber sub = nh.subscribe("chatter", 1000, sensorCallback);
+        ros::Subscriber sub = nh.subscribe("sensor1_data", 500, sensorCallback);
         reached = true;
         std::cout << "enter into if counter " + std::to_string(countPosition) << '\n';
         //std::cout << "enter into if counter 1" + std::to_string(current_pos.pose.pose.position.y) << '\n';
@@ -194,6 +204,7 @@ int main(int argc, char **argv)
       }
 
       else if(countPosition == 2){
+        ros::Subscriber sub = nh.subscribe("sensor2_data", 500, sensorCallback);
         std::cout << "enter into if counter " + std::to_string(countPosition) << '\n';
         for(int i = 100; ros::ok() && i > 0; --i){
           local_pos_pub.publish(sensor2Position);
@@ -204,6 +215,7 @@ int main(int argc, char **argv)
       }
 
       else if(countPosition == 3){
+        ros::Subscriber sub = nh.subscribe("sensor3_data", 500, sensorCallback);
         std::cout << "enter into if counter " + std::to_string(countPosition) << '\n';
         for(int i = 100; ros::ok() && i > 0; --i){
           local_pos_pub.publish(sensor3Position);
@@ -269,7 +281,7 @@ int main(int argc, char **argv)
         std::cout << "current_pos y = " + std::to_string(current_pos.pose.pose.position.y) << '\n';
         countPosition += 1  ;
         reached = false;
-        if(countPosition > 2){
+        if(countPosition > 3){
           countPosition = 0;
           ROS_INFO("uav0/countPosition 0"  );
           time_start1 = ros::Time::now();
