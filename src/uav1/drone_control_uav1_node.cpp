@@ -42,8 +42,8 @@ int main(int argc, char **argv)
 
     geometry_msgs::PoseStamped pose;
     pose.header.frame_id = "map";
-    pose.pose.position.x = 5;
-    pose.pose.position.y = 5;
+    pose.pose.position.x = -5;
+    pose.pose.position.y = -5;
     pose.pose.position.z = 2;
 
 
@@ -198,12 +198,12 @@ int main(int argc, char **argv)
 
 
         if(current_state.armed && ros::Time::now() - time_start1 > ros::Duration(4.0)){
-          std::cout << "position is" + std::to_string(countPosition) << '\n';
+          //std::cout << "position is" + std::to_string(countPosition) << '\n';
           countPosition += 1  ;
 
           if(countPosition > 6){
             countPosition = 0;
-            ROS_INFO("countPosition 0"  );
+            ROS_INFO("uav1/countPosition 0"  );
             time_start1 = ros::Time::now();
           }
         }

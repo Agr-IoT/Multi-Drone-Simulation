@@ -209,12 +209,12 @@ int main(int argc, char **argv)
 
 
         if(current_state.armed && ros::Time::now() - time_start1 > ros::Duration(4.0)){
-          std::cout << "position is" + std::to_string(countPosition) << '\n';
+          //std::cout << "position is" + std::to_string(countPosition) << '\n';
           countPosition += 1  ;
 
           if(countPosition > 7){
             countPosition = 0;
-            ROS_INFO("countPosition 0"  );
+            ROS_INFO("uav2/countPosition 0"  );
             time_start1 = ros::Time::now();
           }
         }

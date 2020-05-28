@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
      ss << "sensor1 data " << count;
      msg.data = ss.str();
 
-     ROS_INFO("%s", msg.data.c_str());
+     //ROS_INFO("%s", msg.data.c_str());
 
      chatter_pub.publish(msg);
 

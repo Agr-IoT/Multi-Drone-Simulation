@@ -1,0 +1,5 @@
+<launch>
+  
+  <node pkg="MultiDrone" type="sensor1_node" name="sensor1_node" output="screen"/>
+		
+</launch>
