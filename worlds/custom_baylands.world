@@ -17,12 +17,7 @@
       <uri>model://baylands</uri>
     </include>
 
-    <spherical_coordinates>
-      <surface_model>EARTH_WGS84</surface_model>
-      <latitude_deg>37.413534</latitude_deg>
-      <longitude_deg>-121.996561</longitude_deg>
-      <elevation>1.3</elevation>
-    </spherical_coordinates>
+    
 
     <physics name='default_physics' default='0' type='ode'>
       <gravity>0 0 -9.8066</gravity>
@@ -45,5 +40,23 @@
       <real_time_update_rate>250</real_time_update_rate>
       <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
     </physics>
+    
+    <model name="can1">
+        <include>
+          <static>true</static>
+          <uri>model://coke_can</uri>
+        </include>
+	<pose>5 -2 0.6 0 0 0</pose>
+     </model>
+     
+      <model name="can2">
+        <include>
+          <static>true</static>
+          <uri>model://coke_can</uri>
+        </include>
+	<pose>7 -1 0.7 0 0 0</pose>
+     </model>
+      
+     
   </world>
 </sdf>
