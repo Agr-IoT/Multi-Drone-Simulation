@@ -212,7 +212,7 @@ int main(int argc, char **argv)
           //std::cout << "position is" + std::to_string(countPosition) << '\n';
           countPosition += 1  ;
 
-          if(countPosition > 7){
+          if(countPosition > 4){
             countPosition = 0;
             ROS_INFO("uav2/countPosition 0"  );
             time_start1 = ros::Time::now();

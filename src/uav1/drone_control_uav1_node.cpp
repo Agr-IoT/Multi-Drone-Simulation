@@ -42,8 +42,8 @@ int main(int argc, char **argv)
 
     geometry_msgs::PoseStamped pose;
     pose.header.frame_id = "map";
-    pose.pose.position.x = -5;
-    pose.pose.position.y = -5;
+    pose.pose.position.x = 1;
+    pose.pose.position.y = -1;
     pose.pose.position.z = 2;
 
 
@@ -63,18 +63,18 @@ int main(int argc, char **argv)
 
 
     geometry_msgs::PoseStamped sensor1Position;
-    sensor1Position.pose.position.x = -2;
-    sensor1Position.pose.position.y = 0;
+    sensor1Position.pose.position.x = -4;
+    sensor1Position.pose.position.y = -6;
     sensor1Position.pose.position.z = 2;
 
     geometry_msgs::PoseStamped sensor2Position;
-    sensor2Position.pose.position.x = -4;
-    sensor2Position.pose.position.y = -5;
+    sensor2Position.pose.position.x = -5.9;
+    sensor2Position.pose.position.y = -12;
     sensor2Position.pose.position.z = 2;
 
     geometry_msgs::PoseStamped sensor3Position;
-    sensor3Position.pose.position.x = -8;
-    sensor3Position.pose.position.y = -6;
+    sensor3Position.pose.position.x = -11;
+    sensor3Position.pose.position.y = -4;
     sensor3Position.pose.position.z = 1;
 
     geometry_msgs::PoseStamped sensor4Position;
@@ -201,7 +201,7 @@ int main(int argc, char **argv)
           //std::cout << "position is" + std::to_string(countPosition) << '\n';
           countPosition += 1  ;
 
-          if(countPosition > 6){
+          if(countPosition > 3){
             countPosition = 0;
             ROS_INFO("uav1/countPosition 0"  );
             time_start1 = ros::Time::now();
