@@ -41,22 +41,57 @@
       <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
     </physics>
     
-    <model name="can1">
+    <model name="s1_can1">
         <include>
           <static>true</static>
           <uri>model://coke_can</uri>
         </include>
-	<pose>5 -2 0.6 0 0 0</pose>
+	<pose>5 -2 0.5 0 0 0</pose>
      </model>
-     
-      <model name="can2">
+     <model name="s1_can2">
         <include>
           <static>true</static>
           <uri>model://coke_can</uri>
         </include>
-	<pose>7 -1 0.7 0 0 0</pose>
+	<pose>9 -4 0.65 0 0 0</pose>
+     </model>
+     <model name="s1_can3">
+        <include>
+          <static>true</static>
+          <uri>model://coke_can</uri>
+        </include>
+	<pose>12 -7 0.5 0 0 0</pose>
+     </model>
+      <model name="s1_can4">
+        <include>
+          <static>true</static>
+          <uri>model://coke_can</uri>
+        </include>
+	<pose>3 -9 0.65 0 0 0</pose>
      </model>
       
+
+     <model name="s2_can1">
+        <include>
+          <static>true</static>
+          <uri>model://coke_can</uri>
+        </include>
+	<pose>-5 -5 0 0 0 0</pose>
+     </model>
+      <model name="s2_can2">
+        <include>
+          <static>true</static>
+          <uri>model://coke_can</uri>
+        </include>
+	<pose>-7 -11 0 0 0 0</pose>
+     </model>
+     <model name="s2_can3">
+        <include>
+          <static>true</static>
+          <uri>model://coke_can</uri>
+        </include>
+	<pose>-11 -3 0 0 0 0</pose>
+     </model>
      
   </world>
 </sdf>
