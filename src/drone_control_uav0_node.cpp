@@ -192,7 +192,7 @@ int main(int argc, char **argv)
         }
       }
       else if(countPosition == 1){
-        ros::Subscriber sub = nh.subscribe("sensor1_data", 500, sensorCallback);
+        ros::Subscriber sub = nh.subscribe("sensor1_data_r1", 500, sensorCallback);
         reached = true;
         std::cout << "enter into if counter " + std::to_string(countPosition) << '\n';
         //std::cout << "enter into if counter 1" + std::to_string(current_pos.pose.pose.position.y) << '\n';
@@ -208,7 +208,7 @@ int main(int argc, char **argv)
       }
 
       else if(countPosition == 2){
-        ros::Subscriber sub = nh.subscribe("sensor2_data", 500, sensorCallback);
+        ros::Subscriber sub = nh.subscribe("sensor2_data_r1", 500, sensorCallback);
         std::cout << "enter into if counter " + std::to_string(countPosition) << '\n';
         for(int i = 100; ros::ok() && i > 0; --i){
           local_pos_pub.publish(sensor2Position);
@@ -219,7 +219,7 @@ int main(int argc, char **argv)
       }
 
       else if(countPosition == 3){
-        ros::Subscriber sub = nh.subscribe("sensor3_data", 500, sensorCallback);
+        ros::Subscriber sub = nh.subscribe("sensor3_data_r1", 500, sensorCallback);
         std::cout << "enter into if counter " + std::to_string(countPosition) << '\n';
         for(int i = 100; ros::ok() && i > 0; --i){
           local_pos_pub.publish(sensor3Position);
@@ -229,6 +229,7 @@ int main(int argc, char **argv)
         std::cout << "exit from if counter " + std::to_string(countPosition) << '\n';
       }
       else if(countPosition == 4){
+        ros::Subscriber sub = nh.subscribe("sensor3_data_r1", 500, sensorCallback);
         std::cout << "enter into if counter " + std::to_string(countPosition) << '\n';
         for(int i = 100; ros::ok() && i > 0; --i){
           local_pos_pub.publish(sensor4Position);
