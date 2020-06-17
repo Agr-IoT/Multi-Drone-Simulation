@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
 
   ROS_INFO("sensor2  Initialized");
 
-  ros::Publisher chatter_pub = nh.advertise<std_msgs::String>("sensor3_data", 1000);
+  ros::Publisher chatter_pub = nh.advertise<std_msgs::String>("sensor3_data_r1", 1000);
 
    ros::Rate loop_rate(1);// it's enough for our context
 
