@@ -1,9 +1,9 @@
 <launch>
  
 
-  <node pkg="MultiDrone" type="drone_control_uav0_node" name="drone_control_uav0_node" output="screen"/>
-  <node pkg="MultiDrone" type="drone_control_uav1_node" name="drone_control_uav1_node" output="screen"/>
-  <node pkg="MultiDrone" type="drone_control_uav2_node" name="drone_control_uav2_node" output="screen"/>
+  <node pkg="MultiDrone" type="drone_control_uav0_node" name="drone_control_uav0_node" output="screen" launch-prefix="gnome-terminal --command"/>
+  <node pkg="MultiDrone" type="drone_control_uav1_node" name="drone_control_uav1_node" output="screen" launch-prefix="gnome-terminal --command"/>
+  <node pkg="MultiDrone" type="drone_control_uav2_node" name="drone_control_uav2_node" output="screen" launch-prefix="gnome-terminal --command"/>
 
   <node pkg="MultiDrone" type="sensor1_node" name="sensor1_node" output="screen"/>
   <node pkg="MultiDrone" type="sensor2_node" name="sensor2_node" output="screen"/>
