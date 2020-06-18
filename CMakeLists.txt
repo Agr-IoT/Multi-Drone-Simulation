@@ -141,10 +141,16 @@ include_directories(
  add_executable(sensor1_node src/sensors/region1/sensor1_node.cpp)
  add_executable(sensor2_node src/sensors/region1/sensor2_node.cpp)
  add_executable(sensor3_node src/sensors/region1/sensor3_node.cpp)
+ add_executable(sensor4_node src/sensors/region1/sensor4_node.cpp)
 
  add_executable(sensor1_node_r2 src/sensors/region2/sensor1_node.cpp)
  add_executable(sensor2_node_r2 src/sensors/region2/sensor2_node.cpp)
  add_executable(sensor3_node_r2 src/sensors/region2/sensor3_node.cpp)
+
+ add_executable(sensor1_node_r3 src/sensors/region3/sensor1_node.cpp)
+ add_executable(sensor2_node_r3 src/sensors/region3/sensor2_node.cpp)
+ add_executable(sensor3_node_r3 src/sensors/region3/sensor3_node.cpp)
+ add_executable(sensor4_node_r3 src/sensors/region3/sensor4_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -176,6 +182,10 @@ include_directories(
  target_link_libraries(sensor3_node
    ${catkin_LIBRARIES}
  )
+ target_link_libraries(sensor4_node
+   ${catkin_LIBRARIES}
+ )
+
 
  target_link_libraries(sensor1_node_r2
    ${catkin_LIBRARIES}
@@ -184,6 +194,19 @@ include_directories(
    ${catkin_LIBRARIES}
  )
  target_link_libraries(sensor3_node_r2
+   ${catkin_LIBRARIES}
+ )
+
+ target_link_libraries(sensor1_node_r3
+   ${catkin_LIBRARIES}
+ )
+ target_link_libraries(sensor2_node_r3
+   ${catkin_LIBRARIES}
+ )
+ target_link_libraries(sensor3_node_r3
+   ${catkin_LIBRARIES}
+ )
+ target_link_libraries(sensor4_node_r3
    ${catkin_LIBRARIES}
  )
 #############

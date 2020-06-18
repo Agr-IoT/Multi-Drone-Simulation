@@ -8,10 +8,17 @@
   <node pkg="MultiDrone" type="sensor1_node" name="sensor1_node" output="screen"/>
   <node pkg="MultiDrone" type="sensor2_node" name="sensor2_node" output="screen"/>
   <node pkg="MultiDrone" type="sensor3_node" name="sensor3_node" output="screen"/>
+  <node pkg="MultiDrone" type="sensor4_node" name="sensor4_node" output="screen"/>
   
   <node pkg="MultiDrone" type="sensor1_node_r2" name="sensor1_node_r2" output="screen"/>
   <node pkg="MultiDrone" type="sensor2_node_r2" name="sensor2_node_r2" output="screen"/>
   <node pkg="MultiDrone" type="sensor3_node_r2" name="sensor3_node_r2" output="screen"/>
+
+  <node pkg="MultiDrone" type="sensor1_node_r3" name="sensor1_node_r3" output="screen"/>
+  <node pkg="MultiDrone" type="sensor2_node_r3" name="sensor2_node_r3" output="screen"/>
+  <node pkg="MultiDrone" type="sensor3_node_r3" name="sensor3_node_r3" output="screen"/>
+  <node pkg="MultiDrone" type="sensor4_node_r3" name="sensor4_node_r3" output="screen"/>
+
 
   <include file="$(find MultiDrone)/launch/multi_uav_rendor.launch"/>
 
