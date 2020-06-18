@@ -93,5 +93,36 @@
 	<pose>-11 -3 0 0 0 0</pose>
      </model>
      
+
+    <model name="s3_can1">
+        <include>
+          <static>true</static>
+          <uri>model://coke_can</uri>
+        </include>
+	<pose>3 6 0.1 0 0 0</pose>
+     </model>
+     <model name="s3_can2">
+        <include>
+          <static>true</static>
+          <uri>model://coke_can</uri>
+        </include>
+	<pose>8 10 0 0 0 0</pose>
+     </model>
+     <model name="s3_can3">
+        <include>
+          <static>true</static>
+          <uri>model://coke_can</uri>
+        </include>
+	<pose>12 4 1.5 0 0 0</pose>
+     </model>
+      <model name="s3_can4">
+        <include>
+          <static>true</static>
+          <uri>model://coke_can</uri>
+        </include>
+	<pose>6 1 0.65 0 0 0</pose>
+     </model>
+      
+     
   </world>
 </sdf>
