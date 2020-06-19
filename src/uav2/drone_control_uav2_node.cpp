@@ -27,21 +27,21 @@ void sensorCallback(const std_msgs::String::ConstPtr& msg)
     float curr_x_pose = current_pos.pose.pose.position.x;
     float curr_y_pose = current_pos.pose.pose.position.y;
     if(curr_y_pose<4.7 && curr_y_pose > 4.3 &&
-      curr_x_pose  < 2.2 && curr_x_pose > 1.8){
+      curr_x_pose  < 2.2 && curr_x_pose > 1.8 && reached){
       ROS_INFO("I got data : [%s]", msg->data.c_str());
     }
     if(curr_y_pose< 8.7 && curr_y_pose > 8.3 &&
-      curr_x_pose  < 7.2 && curr_x_pose > 6.8){
+      curr_x_pose  < 7.2 && curr_x_pose > 6.8 && reached){
       ROS_INFO("I got data : [%s]", msg->data.c_str());
     }
 
     if(curr_y_pose< 2.7 && curr_y_pose > 2.3 &&
-      curr_x_pose  < 11.2 && curr_x_pose > 10.8){
+      curr_x_pose  < 11.2 && curr_x_pose > 10.8 && reached){
       ROS_INFO("I got data : [%s]", msg->data.c_str());
     }
 
     if(curr_y_pose< -0.3 && curr_y_pose > -0.7&&
-      curr_x_pose  < 5.2 && curr_x_pose > 4.8){
+      curr_x_pose  < 5.2 && curr_x_pose > 4.8 && reached ){
       ROS_INFO("I got data : [%s]", msg->data.c_str());
     }
 
@@ -184,12 +184,12 @@ int main(int argc, char **argv)
           std::cout << "enter into if counter 1" + std::to_string(countPosition) << '\n';
           //std::cout << "enter into if counter 1" + std::to_string(current_pos.pose.pose.position.y) << '\n';
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor1Position);
             ros::spinOnce();
             rate.sleep();
           }
-
+          reached = false;
           std::cout << "exit from if counter 1" + std::to_string(countPosition) << '\n';
 
         }
@@ -201,12 +201,12 @@ int main(int argc, char **argv)
           std::cout << "enter into if counter 2" + std::to_string(countPosition) << '\n';
           //std::cout << "enter into if counter 1" + std::to_string(current_pos.pose.pose.position.y) << '\n';
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor2Position);
             ros::spinOnce();
             rate.sleep();
           }
-
+            reached = false;
           std::cout << "exit from if counter 2" + std::to_string(countPosition) << '\n';
 
         }
@@ -218,12 +218,12 @@ int main(int argc, char **argv)
           std::cout << "enter into if counter 3" + std::to_string(countPosition) << '\n';
           //std::cout << "enter into if counter 1" + std::to_string(current_pos.pose.pose.position.y) << '\n';
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor3Position);
             ros::spinOnce();
             rate.sleep();
           }
-
+            reached = false;
           std::cout << "exit from if counter 3" + std::to_string(countPosition) << '\n';
 
 
@@ -235,19 +235,19 @@ int main(int argc, char **argv)
           std::cout << "enter into if counter 4" + std::to_string(countPosition) << '\n';
           //std::cout << "enter into if counter 1" + std::to_string(current_pos.pose.pose.position.y) << '\n';
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor4Position);
             ros::spinOnce();
             rate.sleep();
           }
-
+            reached = false;
           std::cout << "exit from if counter 4" + std::to_string(countPosition) << '\n';
 
 
         }
         else if(countPosition == 5){
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor5Position);
             ros::spinOnce();
             rate.sleep();
@@ -256,7 +256,7 @@ int main(int argc, char **argv)
         }
         else if(countPosition == 6){
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor6Position);
             ros::spinOnce();
             rate.sleep();
@@ -265,7 +265,7 @@ int main(int argc, char **argv)
         }
         else if(countPosition == 7){
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor7Position);
             ros::spinOnce();
             rate.sleep();

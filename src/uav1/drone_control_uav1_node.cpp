@@ -31,19 +31,19 @@
  {
      float curr_x_pose = current_pos.pose.pose.position.x;
      float curr_y_pose = current_pos.pose.pose.position.y;
-     std::cout << "sensor callback called x =" + std::to_string(curr_x_pose) << '\n';
-     std::cout << "sensor callback called y =" + std::to_string(curr_y_pose) << '\n';
-     if(curr_y_pose< -10.5 && curr_y_pose > -11.2 &&
-       curr_x_pose  < -8.5 && curr_x_pose > -9.2){
+     //std::cout << "sensor callback called x =" + std::to_string(curr_x_pose) << '\n';
+    // std::cout << "sensor callback called y =" + std::to_string(curr_y_pose) << '\n';
+     if(curr_y_pose< -10.4 && curr_y_pose > -11.2 &&
+       curr_x_pose  < -8.5 && curr_x_pose > -9.2 && reached){
        ROS_INFO("I got data : [%s]", msg->data.c_str());
      }
-     if(curr_y_pose< -24.2 && curr_y_pose > -25.2 &&
-       curr_x_pose  < -12.5 && curr_x_pose > -13.2){
+     if(curr_y_pose< -23.2 && curr_y_pose > -24.2 &&
+       curr_x_pose  < -12.5 && curr_x_pose > -13.2 && reached){
        ROS_INFO("I got data : [%s]", msg->data.c_str());
      }
 
-     if(curr_y_pose< -6.5 && curr_y_pose > -7.2 &&
-       curr_x_pose  < -20.5 && curr_x_pose > -21.2){
+     if(curr_y_pose< -6.5 && curr_y_pose > -7.8 &&
+       curr_x_pose  < -20.5 && curr_x_pose > -21.2 && reached){
        ROS_INFO("I got data : [%s]", msg->data.c_str());
      }
 
@@ -106,7 +106,7 @@ int main(int argc, char **argv)
 
     geometry_msgs::PoseStamped sensor2Position;
     sensor2Position.pose.position.x = -12.9;
-    sensor2Position.pose.position.y = -25;
+    sensor2Position.pose.position.y = -24;
     sensor2Position.pose.position.z = 2;
 
     geometry_msgs::PoseStamped sensor3Position;
@@ -170,7 +170,7 @@ int main(int argc, char **argv)
         vel.linear.y = -4.0*M_PI*0.1*sin(2.0*M_PI*0.1*(ros::Time::now()-time_start).toSec());*/
         if(countPosition == 0){
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(pose);
             ros::spinOnce();
             rate.sleep();
@@ -178,17 +178,17 @@ int main(int argc, char **argv)
         }
         else if(countPosition == 1){
 
-          ros::Subscriber sub = nh.subscribe("sensor1_data_r2", 500, sensorCallback);
+          ros::Subscriber sub = nh.subscribe("sensor1_data_r2", 250, sensorCallback);
           reached = true;
           std::cout << "enter into if counter 1" + std::to_string(countPosition) << '\n';
           //std::cout << "enter into if counter 1" + std::to_string(current_pos.pose.pose.position.y) << '\n';
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor1Position);
             ros::spinOnce();
             rate.sleep();
           }
-
+          reached = false;
           std::cout << "exit from if counter 1" + std::to_string(countPosition) << '\n';
         }
 
@@ -199,12 +199,12 @@ int main(int argc, char **argv)
           std::cout << "enter into if counter 2" + std::to_string(countPosition) << '\n';
           //std::cout << "enter into if counter 1" + std::to_string(current_pos.pose.pose.position.y) << '\n';
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor2Position);
             ros::spinOnce();
             rate.sleep();
           }
-
+          reached = false;
           std::cout << "exit from if counter 2" + std::to_string(countPosition) << '\n';
 
         }
@@ -216,18 +216,18 @@ int main(int argc, char **argv)
           std::cout << "enter into if counter 3" + std::to_string(countPosition) << '\n';
           //std::cout << "enter into if counter 1" + std::to_string(current_pos.pose.pose.position.y) << '\n';
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor3Position);
             ros::spinOnce();
             rate.sleep();
           }
-
+          reached = false;
           std::cout << "exit from if counter 3" + std::to_string(countPosition) << '\n';
 
         }
         else if(countPosition == 4){
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor4Position);
             ros::spinOnce();
             rate.sleep();
@@ -236,7 +236,7 @@ int main(int argc, char **argv)
         }
         else if(countPosition == 5){
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor5Position);
             ros::spinOnce();
             rate.sleep();
@@ -245,7 +245,7 @@ int main(int argc, char **argv)
         }
         else if(countPosition == 6){
 
-          for(int i = 100; ros::ok() && i > 0; --i){
+          for(int i = 150; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor6Position);
             ros::spinOnce();
             rate.sleep();
@@ -254,7 +254,7 @@ int main(int argc, char **argv)
         }
 
 
-        if(current_state.armed && ros::Time::now() - time_start1 > ros::Duration(8.0)){
+        if(current_state.armed && ros::Time::now() - time_start1 > ros::Duration(10.0)){
           //std::cout << "position is" + std::to_string(countPosition) << '\n';
           countPosition += 1  ;
 
