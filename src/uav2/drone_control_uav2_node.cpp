@@ -1,16 +1,50 @@
-
 #include <ros/ros.h>
 #include <geometry_msgs/PoseStamped.h>
+#include <geometry_msgs/Twist.h>
 #include <mavros_msgs/CommandBool.h>
 #include <mavros_msgs/SetMode.h>
 #include <mavros_msgs/State.h>
+#include <nav_msgs/Odometry.h>
+#include "std_msgs/String.h"
+#include <sstream>
+#include <string>
 
 mavros_msgs::State current_state;
-void state_cb(const mavros_msgs::State::ConstPtr& msg){
-    current_state = *msg;
+nav_msgs::Odometry current_pos;
+bool reached = false;
+
+void state_callback(const mavros_msgs::State::ConstPtr& msg){
+  current_state = *msg;
 }
 
-void testm(){
+void position_callback(const nav_msgs::Odometry::ConstPtr& msg){
+  current_pos = *msg;
+}
+
+
+void sensorCallback(const std_msgs::String::ConstPtr& msg)
+{
+    float curr_x_pose = current_pos.pose.pose.position.x;
+    float curr_y_pose = current_pos.pose.pose.position.y;
+    if(curr_y_pose<4.7 && curr_y_pose > 4.3 &&
+      curr_x_pose  < 2.2 && curr_x_pose > 1.8){
+      ROS_INFO("I got data : [%s]", msg->data.c_str());
+    }
+    if(curr_y_pose< 8.7 && curr_y_pose > 8.3 &&
+      curr_x_pose  < 7.2 && curr_x_pose > 6.8){
+      ROS_INFO("I got data : [%s]", msg->data.c_str());
+    }
+
+    if(curr_y_pose< 2.7 && curr_y_pose > 2.3 &&
+      curr_x_pose  < 11.2 && curr_x_pose > 10.8){
+      ROS_INFO("I got data : [%s]", msg->data.c_str());
+    }
+
+    if(curr_y_pose< -0.3 && curr_y_pose > -0.7&&
+      curr_x_pose  < 5.2 && curr_x_pose > 4.8){
+      ROS_INFO("I got data : [%s]", msg->data.c_str());
+    }
+
 
 }
 
@@ -20,14 +54,16 @@ int main(int argc, char **argv)
     ros::NodeHandle nh;
 
     ros::Subscriber state_sub = nh.subscribe<mavros_msgs::State>
-            ("/uav2/mavros/state", 10, state_cb);
+            ("/uav2/mavros/state", 10, state_callback);
     ros::Publisher local_pos_pub = nh.advertise<geometry_msgs::PoseStamped>
             ("/uav2/mavros/setpoint_position/local", 10);
+    ros::Subscriber position_sub = nh.subscribe<nav_msgs::Odometry>
+            ("/uav2/mavros/global_position/local", 10, position_callback);
     ros::ServiceClient arming_client = nh.serviceClient<mavros_msgs::CommandBool>
             ("/uav2/mavros/cmd/arming");
     ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>
             ("/uav2/mavros/set_mode");
-    ROS_INFO("Initializing...");
+    ROS_INFO("Initializing... uav2");
     //the setpoint publishing rate MUST be faster than 2Hz
     ros::Rate rate(20.0);
 
@@ -40,8 +76,8 @@ int main(int argc, char **argv)
 
     geometry_msgs::PoseStamped pose;
     pose.header.frame_id = "map";
-    pose.pose.position.x = 5;
-    pose.pose.position.y = 5;
+    pose.pose.position.x = -1;
+    pose.pose.position.y = 1;
     pose.pose.position.z = 2;
 
 
@@ -60,23 +96,23 @@ int main(int argc, char **argv)
 
 
     geometry_msgs::PoseStamped sensor1Position;
-    sensor1Position.pose.position.x = 6;
-    sensor1Position.pose.position.y = 9;
+    sensor1Position.pose.position.x = 2;
+    sensor1Position.pose.position.y = 4.5;
     sensor1Position.pose.position.z = 2;
 
     geometry_msgs::PoseStamped sensor2Position;
-    sensor2Position.pose.position.x = 10;
-    sensor2Position.pose.position.y = 7;
+    sensor2Position.pose.position.x = 7;   // act +1
+    sensor2Position.pose.position.y = 8.5; // act +1.5
     sensor2Position.pose.position.z = 2;
 
     geometry_msgs::PoseStamped sensor3Position;
-    sensor3Position.pose.position.x = 12;
-    sensor3Position.pose.position.y = 4;
-    sensor3Position.pose.position.z = 1;
+    sensor3Position.pose.position.x = 11;
+    sensor3Position.pose.position.y = 2.5;
+    sensor3Position.pose.position.z = 3;
 
     geometry_msgs::PoseStamped sensor4Position;
-    sensor4Position.pose.position.x = 10;
-    sensor4Position.pose.position.y = 4;
+    sensor4Position.pose.position.x = 5;
+    sensor4Position.pose.position.y = -0.5;
     sensor4Position.pose.position.z = 2;
 
     geometry_msgs::PoseStamped sensor5Position;
@@ -143,15 +179,27 @@ int main(int argc, char **argv)
         }
         else if(countPosition == 1){
 
+          ros::Subscriber sub = nh.subscribe("sensor1_data_r3", 500, sensorCallback);
+          reached = true;
+          std::cout << "enter into if counter 1" + std::to_string(countPosition) << '\n';
+          //std::cout << "enter into if counter 1" + std::to_string(current_pos.pose.pose.position.y) << '\n';
+
           for(int i = 100; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor1Position);
             ros::spinOnce();
             rate.sleep();
           }
 
+          std::cout << "exit from if counter 1" + std::to_string(countPosition) << '\n';
+
         }
 
         else if(countPosition == 2){
+
+          ros::Subscriber sub = nh.subscribe("sensor2_data_r3", 500, sensorCallback);
+          reached = true;
+          std::cout << "enter into if counter 2" + std::to_string(countPosition) << '\n';
+          //std::cout << "enter into if counter 1" + std::to_string(current_pos.pose.pose.position.y) << '\n';
 
           for(int i = 100; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor2Position);
@@ -159,9 +207,16 @@ int main(int argc, char **argv)
             rate.sleep();
           }
 
+          std::cout << "exit from if counter 2" + std::to_string(countPosition) << '\n';
+
         }
 
         else if(countPosition == 3){
+
+          ros::Subscriber sub = nh.subscribe("sensor3_data_r3", 500, sensorCallback);
+          reached = true;
+          std::cout << "enter into if counter 3" + std::to_string(countPosition) << '\n';
+          //std::cout << "enter into if counter 1" + std::to_string(current_pos.pose.pose.position.y) << '\n';
 
           for(int i = 100; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor3Position);
@@ -169,14 +224,25 @@ int main(int argc, char **argv)
             rate.sleep();
           }
 
+          std::cout << "exit from if counter 3" + std::to_string(countPosition) << '\n';
+
+
         }
         else if(countPosition == 4){
+
+          ros::Subscriber sub = nh.subscribe("sensor4_data_r3", 500, sensorCallback);
+          reached = true;
+          std::cout << "enter into if counter 4" + std::to_string(countPosition) << '\n';
+          //std::cout << "enter into if counter 1" + std::to_string(current_pos.pose.pose.position.y) << '\n';
 
           for(int i = 100; ros::ok() && i > 0; --i){
             local_pos_pub.publish(sensor4Position);
             ros::spinOnce();
             rate.sleep();
           }
+
+          std::cout << "exit from if counter 4" + std::to_string(countPosition) << '\n';
+
 
         }
         else if(countPosition == 5){
