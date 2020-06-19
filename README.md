@@ -7,3 +7,4 @@ ground. The sensor nodes should able to pass messege to drone when a drone comes
 ![](images/ezgif.com-video-to-gif.gif)
 
 ## This how drone read messeges from sensor nodes
+![](images/sample_read_message.gif)
