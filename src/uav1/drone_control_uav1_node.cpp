@@ -31,18 +31,19 @@
  {
      float curr_x_pose = current_pos.pose.pose.position.x;
      float curr_y_pose = current_pos.pose.pose.position.y;
-       std::cout << "sensor callback called " + std::to_string(curr_x_pose) << '\n';
-     if(curr_y_pose< -5.8 && curr_y_pose > -6.2 &&
-       curr_x_pose  < -3.8 && curr_x_pose > -4.2){
+     std::cout << "sensor callback called x =" + std::to_string(curr_x_pose) << '\n';
+     std::cout << "sensor callback called y =" + std::to_string(curr_y_pose) << '\n';
+     if(curr_y_pose< -10.5 && curr_y_pose > -11.2 &&
+       curr_x_pose  < -8.5 && curr_x_pose > -9.2){
        ROS_INFO("I got data : [%s]", msg->data.c_str());
      }
-     if(curr_y_pose< -10.8 && curr_y_pose > -12.2 &&
-       curr_x_pose  < -5.7 && curr_x_pose > -6.1){
+     if(curr_y_pose< -24.2 && curr_y_pose > -25.2 &&
+       curr_x_pose  < -12.5 && curr_x_pose > -13.2){
        ROS_INFO("I got data : [%s]", msg->data.c_str());
      }
 
-     if(curr_y_pose< -3.8 && curr_y_pose > -4.2 &&
-       curr_x_pose  < 10.8 && curr_x_pose > -11.2){
+     if(curr_y_pose< -6.5 && curr_y_pose > -7.2 &&
+       curr_x_pose  < -20.5 && curr_x_pose > -21.2){
        ROS_INFO("I got data : [%s]", msg->data.c_str());
      }
 
@@ -64,7 +65,7 @@ int main(int argc, char **argv)
             ("/uav1/mavros/cmd/arming");
     ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>
             ("/uav1/mavros/set_mode");
-
+    ROS_INFO("Initializing... uav1");
     //the setpoint publishing rate MUST be faster than 2Hz
     ros::Rate rate(20.0);
 
@@ -99,18 +100,18 @@ int main(int argc, char **argv)
 
 
     geometry_msgs::PoseStamped sensor1Position;
-    sensor1Position.pose.position.x = -4;
-    sensor1Position.pose.position.y = -6;
+    sensor1Position.pose.position.x = -9;
+    sensor1Position.pose.position.y = -11;
     sensor1Position.pose.position.z = 2;
 
     geometry_msgs::PoseStamped sensor2Position;
-    sensor2Position.pose.position.x = -5.9;
-    sensor2Position.pose.position.y = -12;
+    sensor2Position.pose.position.x = -12.9;
+    sensor2Position.pose.position.y = -25;
     sensor2Position.pose.position.z = 2;
 
     geometry_msgs::PoseStamped sensor3Position;
-    sensor3Position.pose.position.x = -11;
-    sensor3Position.pose.position.y = -4;
+    sensor3Position.pose.position.x = -21;
+    sensor3Position.pose.position.y = -7;
     sensor3Position.pose.position.z = 1;
 
     geometry_msgs::PoseStamped sensor4Position;
