@@ -17,7 +17,7 @@
       <uri>model://baylands</uri>
     </include>
 
-    
+
 
     <physics name='default_physics' default='0' type='ode'>
       <gravity>0 0 -9.8066</gravity>
@@ -40,89 +40,90 @@
       <real_time_update_rate>250</real_time_update_rate>
       <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
     </physics>
-    
+
     <model name="s1_can1">
         <include>
           <static>true</static>
-          <uri>model://coke_can</uri>
+           <uri>model://drc_practice_blue_cylinder</uri>
         </include>
-	<pose>5 -2 0.5 0 0 0</pose>
+	<pose>10 -4 0 0 0 0</pose>
      </model>
      <model name="s1_can2">
         <include>
           <static>true</static>
-          <uri>model://coke_can</uri>
+           <uri>model://drc_practice_blue_cylinder</uri>
         </include>
-	<pose>9 -4 0.65 0 0 0</pose>
+	<pose>18 -8 0.5 0 0 0</pose>
      </model>
      <model name="s1_can3">
         <include>
           <static>true</static>
-          <uri>model://coke_can</uri>
+           <uri>model://drc_practice_blue_cylinder</uri>
         </include>
-	<pose>12 -7 0.5 0 0 0</pose>
+	<pose>24 -14 0 0 0 0</pose>
      </model>
       <model name="s1_can4">
         <include>
           <static>true</static>
-          <uri>model://coke_can</uri>
+           <uri>model://drc_practice_blue_cylinder</uri>
         </include>
-	<pose>3 -9 0.65 0 0 0</pose>
+	<pose>6 -18 -0.5 0 0 0</pose>
      </model>
-      
+
 
      <model name="s2_can1">
         <include>
           <static>true</static>
-          <uri>model://coke_can</uri>
+           <uri>model://drc_practice_blue_cylinder</uri>
         </include>
-	<pose>-5 -5 0 0 0 0</pose>
+	<pose>-10 -10 -0.5 0 0 0</pose>
      </model>
       <model name="s2_can2">
         <include>
           <static>true</static>
-          <uri>model://coke_can</uri>
+           <uri>model://drc_practice_blue_cylinder</uri>
         </include>
-	<pose>-7 -11 0 0 0 0</pose>
+	<pose>-14 -22 -0.5 0 0 0</pose>
      </model>
      <model name="s2_can3">
         <include>
           <static>true</static>
-          <uri>model://coke_can</uri>
+           <uri>model://drc_practice_blue_cylinder</uri>
         </include>
-	<pose>-11 -3 0 0 0 0</pose>
+	<pose>-22 -6 -0.5 0 0 0</pose>
      </model>
-     
+
 
     <model name="s3_can1">
         <include>
           <static>true</static>
-          <uri>model://coke_can</uri>
+           <uri>model://drc_practice_blue_cylinder</uri>
         </include>
-	<pose>3 6 0.1 0 0 0</pose>
+	<pose>3 6 -0.5 0 0 0</pose>
+
      </model>
      <model name="s3_can2">
         <include>
           <static>true</static>
-          <uri>model://coke_can</uri>
+           <uri>model://drc_practice_blue_cylinder</uri>
         </include>
-	<pose>8 10 0 0 0 0</pose>
+	<pose>8 10 -0.5 0 0 0</pose>
      </model>
      <model name="s3_can3">
         <include>
           <static>true</static>
-          <uri>model://coke_can</uri>
+           <uri>model://drc_practice_blue_cylinder</uri>
         </include>
-	<pose>12 4 1.5 0 0 0</pose>
+	<pose>12 4 0.5 0 0 0</pose>
      </model>
       <model name="s3_can4">
         <include>
           <static>true</static>
-          <uri>model://coke_can</uri>
+           <uri>model://drc_practice_blue_cylinder</uri>
         </include>
-	<pose>6 1 0.65 0 0 0</pose>
+	<pose>6 1 0 0 0 0</pose>
      </model>
-      
-     
+
+
   </world>
 </sdf>

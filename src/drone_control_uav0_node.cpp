@@ -26,22 +26,24 @@ void sensorCallback(const std_msgs::String::ConstPtr& msg)
 {
     float curr_x_pose = current_pos.pose.pose.position.x;
     float curr_y_pose = current_pos.pose.pose.position.y;
-    if(curr_y_pose< -0.8 && curr_y_pose > -1.2 &&
-      curr_x_pose  < 5.2 && curr_x_pose > 4.8){
+    std::cout << "sensor callback x = " + std::to_string(current_pos.pose.pose.position.x) << '\n';
+    std::cout << "current_pos y = " + std::to_string(current_pos.pose.pose.position.y) << '\n';
+    if(curr_y_pose< -2.8 && curr_y_pose > -3.2 &&
+      curr_x_pose  < 10.2 && curr_x_pose > 9.8){
       ROS_INFO("I got data : [%s]", msg->data.c_str());
     }
-    if(curr_y_pose< -2.7 && curr_y_pose > -3.3 &&
-      curr_x_pose  < 9.2 && curr_x_pose > 8.8){
-      ROS_INFO("I got data : [%s]", msg->data.c_str());
-    }
-
-    if(curr_y_pose< -5.8 && curr_y_pose > -6.2 &&
-      curr_x_pose  < 12.2 && curr_x_pose > 10.8){
+    if(curr_y_pose< -6.8 && curr_y_pose > -7.2 &&
+      curr_x_pose  < 18.2 && curr_x_pose > 17.8){
       ROS_INFO("I got data : [%s]", msg->data.c_str());
     }
 
-    if(curr_y_pose< -7.8 && curr_y_pose > -8.2 &&
-      curr_x_pose  < 3.2 && curr_x_pose > 2.8){
+    if(curr_y_pose< -12.8 && curr_y_pose > -13.2 &&
+      curr_x_pose  < 24.2 && curr_x_pose > 23.8){
+      ROS_INFO("I got data : [%s]", msg->data.c_str());
+    }
+
+    if(curr_y_pose< -16.5 && curr_y_pose > -17.2 &&
+      curr_x_pose  < 6.8 && curr_x_pose > 5.8){
       ROS_INFO("I got data : [%s]", msg->data.c_str());
     }
 
@@ -69,7 +71,7 @@ int main(int argc, char **argv)
   //the setpoint publishing rate MUST be faster than 2Hz
   ros::Rate rate(20.0);
 
-  ROS_INFO("Initializing...");
+  ROS_INFO("Initializing... uav0");
 
   // wait for FCU connection
   while(ros::ok() && !current_state.connected){
@@ -109,23 +111,23 @@ int main(int argc, char **argv)
 
 
   geometry_msgs::PoseStamped sensor1Position;
-  sensor1Position.pose.position.x = 5;
-  sensor1Position.pose.position.y = -1;
+  sensor1Position.pose.position.x = 10;
+  sensor1Position.pose.position.y = -3;
   sensor1Position.pose.position.z = 2;
 
   geometry_msgs::PoseStamped sensor2Position;
-  sensor2Position.pose.position.x = 9;
-  sensor2Position.pose.position.y = -3;
+  sensor2Position.pose.position.x = 18;
+  sensor2Position.pose.position.y = -7;
   sensor2Position.pose.position.z = 2;
 
   geometry_msgs::PoseStamped sensor3Position;
-  sensor3Position.pose.position.x = 12;
-  sensor3Position.pose.position.y = -6;
+  sensor3Position.pose.position.x = 24;
+  sensor3Position.pose.position.y = -13;
   sensor3Position.pose.position.z = 3;
 
   geometry_msgs::PoseStamped sensor4Position;
-  sensor4Position.pose.position.x = 3;
-  sensor4Position.pose.position.y = -8;
+  sensor4Position.pose.position.x = 6;
+  sensor4Position.pose.position.y = -17;
   sensor4Position.pose.position.z = 2;
 
   geometry_msgs::PoseStamped sensor5Position;
@@ -229,7 +231,7 @@ int main(int argc, char **argv)
         std::cout << "exit from if counter " + std::to_string(countPosition) << '\n';
       }
       else if(countPosition == 4){
-        ros::Subscriber sub = nh.subscribe("sensor3_data_r1", 500, sensorCallback);
+        ros::Subscriber sub = nh.subscribe("sensor4_data_r1", 500, sensorCallback);
         std::cout << "enter into if counter " + std::to_string(countPosition) << '\n';
         for(int i = 100; ros::ok() && i > 0; --i){
           local_pos_pub.publish(sensor4Position);
@@ -283,7 +285,9 @@ int main(int argc, char **argv)
 
       if(current_state.armed && ros::Time::now() - time_start1 > ros::Duration(8.0)){
         //std::cout << "position is" + std::to_string(countPosition) << '\n';
+        std::cout << "current_pos x = " + std::to_string(current_pos.pose.pose.position.x) << '\n';
         std::cout << "current_pos y = " + std::to_string(current_pos.pose.pose.position.y) << '\n';
+
         countPosition += 1  ;
         reached = false;
         if(countPosition > 4){
