@@ -8,6 +8,16 @@
         </clouds>
       </sky>
     </scene>
+    <scene>
+      <ambient>1 1 1 1</ambient>
+      <background>1 1 1 1</background>
+      <shadows>false</shadows>
+    </scene>
+    <light type="directional" name="some_light">
+      <diffuse>1 1 1 0</diffuse>
+      <specular>1 1 1 0</specular>
+      <direction>-1 -1 -1</direction>
+    </light>
     <!-- A global light source -->
     <include>
       <uri>model://sun</uri>
