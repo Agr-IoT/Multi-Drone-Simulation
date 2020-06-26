@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
      std_msgs::String msg;
      float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX) + 27;
      std::stringstream ss;
-     ss << "sensor3 data " << r;
+     ss << "sensor3 { data :- " << r << " }";
      msg.data = ss.str();
 
      //ROS_INFO("%s", msg.data.c_str());

@@ -12,7 +12,27 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   mavros_msgs
   nav_msgs
+  gazebo_ros
 )
+
+find_package(gazebo REQUIRED)
+include_directories(${GAZEBO_INCLUDE_DIRS})
+link_directories(${GAZEBO_LIBRARY_DIRS})
+list(APPEND CMAKE_CXX_FLAGS "${GAZEBO_CXX_FLAGS}")
+
+#include (${QT_USE_FILE})
+add_definitions(${QT_DEFINITIONS})
+#Sadd_executable(floating_model_names src/FloatingModelNames.cc)
+#add_library(floating_model_names SHARED ${headers_MOC}
+#  FloatingModelNames.cc)
+#target_link_libraries(floating_model_names ${GAZEBO_LIBRARIES}
+#    ${QT_LIBRARIES}
+#   ${PROTOBUF_LIBRARIES})
+
+
+
+#add_library(${PROJECT_NAME} src/simple_world_plugin.cpp)
+#target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -108,6 +128,7 @@ catkin_package(
 #  LIBRARIES MultiDrone
 #  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
+   
 )
 
 ###########
@@ -118,7 +139,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
 # include
- ${catkin_INCLUDE_DIRS}
+ ${catkin_INCLUDE_DIRS} 
 )
 
 ## Declare a C++ library
@@ -166,6 +187,7 @@ include_directories(
  target_link_libraries(drone_control_uav0_node
    ${catkin_LIBRARIES}
  )
+ target_link_libraries(drone_control_uav1_node ${GAZEBO_LIBRARIES})
  target_link_libraries(drone_control_uav1_node
    ${catkin_LIBRARIES}
  )
