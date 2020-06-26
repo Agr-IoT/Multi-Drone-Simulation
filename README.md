@@ -4,7 +4,7 @@
 ground. The sensor nodes should able to pass messege to drone when a drone comes into it's region.
 
 ## This how drone aproches thier sensor nodes
-![](images/ezgif.com-video-to-gif.gif)
+![](images/drone_aproach_sensor_clear.gif)
 
 ## This how drone read messeges from sensor nodes
 ![](images/sample_read_message.gif)
