@@ -26,3 +26,13 @@ I have added 3 drones here each drone is devided the areas between them and assi
 * clone the latest px4 Firmware (follow the steps [here](https://dev.px4.io/master/en/simulation/multi_vehicle_simulation_gazebo.html#build-and-test )) 
 
 ###### if all above result satisfied your machine the clone this repo and launch it
+
+## For devolpers to modify the code
+* [here](https://github.com/Agr-IoT/Multi-Drone-Simulation/tree/master/src) lies al the coding part
+  - There are folders for sensors and uavs 
+  - If devolper wants to made changes in uav path they change it in uav folder
+  - If devolper wants to made changes underlying sensor property
+ 
+ * [here](https://github.com/Agr-IoT/Multi-Drone-Simulation/tree/master/worlds) lies the world part
+   - Devoloper can add or remove or edit the world file as he need
+   - make sure corresponding changes in the launch files also. [here](https://github.com/Agr-IoT/Multi-Drone-Simulation/tree/master/launch) devoloper can find the launch files
