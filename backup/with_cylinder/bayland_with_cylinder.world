@@ -1,0 +1,129 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <scene>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+    </scene>
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <uri>model://baylands</uri>
+    </include>
+
+
+
+    <physics name='default_physics' default='0' type='ode'>
+      <gravity>0 0 -9.8066</gravity>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>10</iters>
+          <sor>1.3</sor>
+          <use_dynamic_moi_rescaling>0</use_dynamic_moi_rescaling>
+        </solver>
+        <constraints>
+          <cfm>0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>100</contact_max_correcting_vel>
+          <contact_surface_layer>0.001</contact_surface_layer>
+        </constraints>
+      </ode>
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+      <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
+    </physics>
+
+    <model name="s1_can1">
+        <include>
+          <static>true</static>
+           <uri>model://drc_practice_blue_cylinder</uri>
+        </include>
+	<pose>10 -4 0 0 0 0</pose>
+     </model>
+     <model name="s1_can2">
+        <include>
+          <static>true</static>
+           <uri>model://drc_practice_blue_cylinder</uri>
+        </include>
+	<pose>18 -8 0.5 0 0 0</pose>
+     </model>
+     <model name="s1_can3">
+        <include>
+          <static>true</static>
+           <uri>model://drc_practice_blue_cylinder</uri>
+        </include>
+	<pose>24 -14 0 0 0 0</pose>
+     </model>
+      <model name="s1_can4">
+        <include>
+          <static>true</static>
+           <uri>model://drc_practice_blue_cylinder</uri>
+        </include>
+	<pose>6 -18 -0.5 0 0 0</pose>
+     </model>
+
+
+     <model name="s2_can1">
+        <include>
+          <static>true</static>
+           <uri>model://drc_practice_blue_cylinder</uri>
+        </include>
+	<pose>-10 -10 -0.5 0 0 0</pose>
+     </model>
+      <model name="s2_can2">
+        <include>
+          <static>true</static>
+           <uri>model://drc_practice_blue_cylinder</uri>
+        </include>
+	<pose>-14 -22 -0.5 0 0 0</pose>
+     </model>
+     <model name="s2_can3">
+        <include>
+          <static>true</static>
+           <uri>model://drc_practice_blue_cylinder</uri>
+        </include>
+	<pose>-22 -6 -0.5 0 0 0</pose>
+     </model>
+
+
+    <model name="s3_can1">
+        <include>
+          <static>true</static>
+           <uri>model://drc_practice_blue_cylinder</uri>
+        </include>
+	<pose>3 6 -0.5 0 0 0</pose>
+
+     </model>
+     <model name="s3_can2">
+        <include>
+          <static>true</static>
+           <uri>model://drc_practice_blue_cylinder</uri>
+        </include>
+	<pose>8 10 -0.5 0 0 0</pose>
+     </model>
+     <model name="s3_can3">
+        <include>
+          <static>true</static>
+           <uri>model://drc_practice_blue_cylinder</uri>
+        </include>
+	<pose>12 4 0.5 0 0 0</pose>
+     </model>
+      <model name="s3_can4">
+        <include>
+          <static>true</static>
+           <uri>model://drc_practice_blue_cylinder</uri>
+        </include>
+	<pose>6 1 0 0 0 0</pose>
+     </model>
+
+
+  </world>
+</sdf>
